@@ -1,6 +1,19 @@
+<div align="center">
+  <img src="assets/logo.png" />
+</div>
+
+---
+
 # face3d_pytorch
 
-A PyTorch-based toolkit for 3D face parameterization and reconstruction, integrating multiple face models.
+<div align="center">
+  <img src="assets/demo.gif" height="256" />
+</div>
+
+<p align="center">
+🤩🤩🤩A PyTorch-based toolkit for 3D face parameterization and reconstruction, integrating multiple face models.🤩🤩🤩
+</p>
+
 
 ## 🔥 Updates
 
@@ -34,7 +47,7 @@ A PyTorch-based toolkit for 3D face parameterization and reconstruction, integra
 
 Download the assets from [here]() and place them in the project as follows:
 
-```txt
+```markdown
 face3d_pytorch
 |- assets
 `- face3d_pytorch
@@ -151,3 +164,7 @@ plt.axis("off")
 ```
 
 ![](assets/deca_output_inverse.png)
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
