@@ -4,42 +4,49 @@
 
 ---
 
-# face3d_pytorch
-
 <div align="center">
   <img src="assets/demo.gif" height="256" />
 </div>
 
 <p align="center">
-🤩🤩🤩A PyTorch-based toolkit for 3D face parameterization and reconstruction, integrating multiple face models.🤩🤩🤩
+🤩A PyTorch-based toolkit for 3D face parameterization and reconstruction, integrating multiple face models.🤩
 </p>
 
 
 ## 🔥 Updates
 
+- [2026.10.26] Release [Deep3DFaceRecon](https://github.com/sicxu/Deep3DFaceRecon_pytorch), [Deep3DFaceRecon's BFM](https://github.com/sicxu/Deep3DFaceRecon_pytorch), and [Deep3DFaceRecon's Nvduffrast-based renderer](https://github.com/sicxu/Deep3DFaceRecon_pytorch).
 - [2026.10.26] Release [MediaPipe Blendshapes to FLAME](https://github.com/PeizhiYan/mediapipe-blendshapes-to-flame), [DECA](https://github.com/yfeng95/DECA), [MICA](https://github.com/Zielon/MICA), [SMIRK](https://github.com/georgeretsi/smirk), and [SPECTRE](https://github.com/filby89/spectre).
 - [2026.10.26] Release [FLAME](https://github.com/soubhiksanyal/FLAME_PyTorch).
 - [2026.10.26] 🎉 Release [face3d_pytorch](https://github.com/tlemangen/face3d_pytorch).
 
 ## 📄 TODO
 
-- [ ] Parameterizer
-    - [x] [MediaPipe Blendshapes to FLAME](https://github.com/PeizhiYan/mediapipe-blendshapes-to-flame)
-    - [x] [DECA](https://github.com/yfeng95/DECA)
-    - [x] [MICA](https://github.com/Zielon/MICA)
-    - [x] [SMIRK](https://github.com/georgeretsi/smirk)
-    - [x] [SPECTRE](https://github.com/filby89/spectre)
-    - [ ] [EMOCA](https://github.com/radekd91/emoca)
-    - [ ] [INFERNO](https://github.com/radekd91/inferno)
-    - [ ] ...
-- [ ] 3DMM
+- Parameterizer
+    - FLAME-based
+        - [x] [MediaPipe Blendshapes to FLAME](https://github.com/PeizhiYan/mediapipe-blendshapes-to-flame)
+        - [x] [DECA](https://github.com/yfeng95/DECA)
+        - [x] [MICA](https://github.com/Zielon/MICA)
+        - [x] [SMIRK](https://github.com/georgeretsi/smirk)
+        - [x] [SPECTRE](https://github.com/filby89/spectre)
+        - [ ] [EMOCA](https://github.com/radekd91/emoca)
+        - [ ] [INFERNO](https://github.com/radekd91/inferno)
+        - [ ] ...
+    - BFM-based
+        - [x] [Deep3DFaceRecon](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
+        - [ ] ...
+- 3DMM
     - [x] [FLAME](https://github.com/soubhiksanyal/FLAME_PyTorch)
-    - [ ] BFM
-- [ ] Renderer
+    - BFM
+        - [x] [Deep3DFaceRecon's BFM](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
+        - [ ] ...
+- Renderer
+    - [x] [Deep3DFaceRecon's Nvduffrast-based renderer](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
     - [ ] ...
-- [ ] Applications
+- Applications
     - [ ] Face Reconstruction
     - [ ] Face Reenactment
+    - [ ] ...
 
 ## 📖 Quick Start
 
