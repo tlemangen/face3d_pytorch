@@ -11,6 +11,8 @@ class SPECTREWrapper(nn.Module):
 
     def __init__(
         self,
+        retinaface_resnet50_final_pth="face3d_pytorch/assets/ibug/face_detection/retina_face/weights/Resnet50_Final.pth",
+        fan_2dfan2_pth="face3d_pytorch/assets/ibug/face_alignment/fan/weights/2dfan2.pth",
         flame_encoder_checkpoints="face3d_pytorch/assets/spectre/flame_encoder.pth",
         exp_encoder_checkpoints="face3d_pytorch/assets/spectre/exp_encoder.pth",
         n_shape=100,
@@ -22,7 +24,7 @@ class SPECTREWrapper(nn.Module):
         device="cuda",
     ):
         super().__init__()
-        self.aligner = SPECTREAlign(device)
+        self.aligner = SPECTREAlign(retinaface_resnet50_final_pth, fan_2dfan2_pth, device)
 
         n_param = n_shape + n_tex + n_exp + n_pose + n_cam + n_light
         self.E_flame = ResnetEncoder(outsize=n_param).eval()

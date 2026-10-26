@@ -77,10 +77,15 @@ def crop_face(frame, landmarks, scale=1.0):
 
 class SPECTREAlign(nn.Module):
 
-    def __init__(self, device="cuda"):
+    def __init__(
+        self,
+        retinaface_resnet50_final_pth="face3d_pytorch/assets/ibug/face_detection/retina_face/weights/Resnet50_Final.pth",
+        fan_2dfan2_pth="face3d_pytorch/assets/ibug/face_alignment/fan/weights/2dfan2.pth",
+        device="cuda",
+    ):
         super().__init__()
-        self.face_tracker = FaceTracker(device)
-        
+        self.face_tracker = FaceTracker(retinaface_resnet50_final_pth, fan_2dfan2_pth, device)
+
         logger.info(f"[{self.__class__.__name__}] Loading done!")
 
     @torch.no_grad()
@@ -151,10 +156,7 @@ class SPECTREAlign(nn.Module):
 
         # aligned_frames_list: List[(L, C, H, W)]
         # tforms_list: List[(L, 3, 3)]
-        align_dict = {
-            "aligned_images": aligned_frames_list,
-            "align_params": tforms_list
-        }
+        align_dict = {"aligned_images": aligned_frames_list, "align_params": tforms_list}
         return align_dict
 
 

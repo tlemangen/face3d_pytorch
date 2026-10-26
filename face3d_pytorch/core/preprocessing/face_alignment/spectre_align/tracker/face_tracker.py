@@ -26,7 +26,11 @@ class FaceTracker(object):
 
         # Create a RetinaFace detector using Resnet50 backbone.
         self.face_detector = RetinaFacePredictor(
-            device=device, threshold=0.8, model=RetinaFacePredictor.get_model('resnet50', weights=retinaface_resnet50_final_pth)
+            name="resnet50",
+            weights=retinaface_resnet50_final_pth,
+            device=device,
+            threshold=0.8,
+            model=RetinaFacePredictor.get_model('resnet50', weights=retinaface_resnet50_final_pth),
         )
         # Create FAN for alignmentm, default model is '2dfan2'
         alignment_weights = None
