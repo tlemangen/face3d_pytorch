@@ -1,0 +1,1 @@
+from .headgan_detector.headgan_detector import HeadGANDetector

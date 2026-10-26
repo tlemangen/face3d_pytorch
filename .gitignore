@@ -1,0 +1,6 @@
+.vscode/
+face3d_pytorch/assets/
+third_party/
+tests/
+*/__pycache__
+*.pyc
