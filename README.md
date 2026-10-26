@@ -15,6 +15,7 @@
 
 ## 🔥 Updates
 
+- [2026.10.27] 🥳 Release [assets link](https://drive.google.com/drive/folders/1aDB0C4Bs_EuGZFKZDm9lrRQTvAyiTmsh?usp=sharing)
 - [2026.10.26] Release [Deep3DFaceRecon](https://github.com/sicxu/Deep3DFaceRecon_pytorch), [Deep3DFaceRecon's BFM](https://github.com/sicxu/Deep3DFaceRecon_pytorch), and [Deep3DFaceRecon's Nvduffrast-based renderer](https://github.com/sicxu/Deep3DFaceRecon_pytorch).
 - [2026.10.26] Release [MediaPipe Blendshapes to FLAME](https://github.com/PeizhiYan/mediapipe-blendshapes-to-flame), [DECA](https://github.com/yfeng95/DECA), [MICA](https://github.com/Zielon/MICA), [SMIRK](https://github.com/georgeretsi/smirk), and [SPECTRE](https://github.com/filby89/spectre).
 - [2026.10.26] Release [FLAME](https://github.com/soubhiksanyal/FLAME_PyTorch).
@@ -52,7 +53,7 @@
 
 ### 🔗 Download Assets
 
-Download the assets from [here]() and place them in the project as follows:
+Download the assets from [here](https://drive.google.com/drive/folders/1aDB0C4Bs_EuGZFKZDm9lrRQTvAyiTmsh?usp=sharing) and place them in the project as follows:
 
 ```markdown
 face3d_pytorch
@@ -164,7 +165,7 @@ Inverse-align to original coordinates:
 from face3d_pytorch.core.preprocessing.face_alignment import deca_inverse_align
 
 out = deca_inverse_align(renderred_mesh, align_dict["align_params"], output_size=(256, 256))
-out = 0.5 * images + 0.5 * out
+out = 0.5 * video + 0.5 * out
 plt.figure(figsize=(40, 40))
 plt.imshow(make_grid(out, nrow=8).permute(1, 2, 0).detach().cpu().numpy())
 plt.axis("off")

@@ -4,3 +4,4 @@ third_party/
 tests/
 */__pycache__
 *.pyc
+*.zip

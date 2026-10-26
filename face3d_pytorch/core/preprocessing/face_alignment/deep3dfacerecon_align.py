@@ -10,7 +10,7 @@ import torch.nn.functional as F
 import torchvision.transforms.functional as TVF
 from PIL import Image
 from scipy.io import loadmat
-
+from loguru import logger
 
 # calculating least square problem for image alignment
 def POS(xp, x):
@@ -153,6 +153,8 @@ class Deep3DFaceReconAlign(nn.Module):
         self.mask = mask
         self.target_size = target_size
         self.rescale_factor = rescale_factor
+
+        logger.info(f"[{self.__class__.__name__}] Loading done!")
 
     def forward(self, images):
         # images: (B, C, H, W)
