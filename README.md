@@ -15,7 +15,8 @@
 
 ## 🔥 Updates
 
-- [2026.10.27] 🥳 Release [assets link](https://drive.google.com/drive/folders/1aDB0C4Bs_EuGZFKZDm9lrRQTvAyiTmsh?usp=sharing)
+- [2026.10.29] Release [Face3D's fitting](https://github.com/yfeng95/face3d), and [Face3D's BFM](https://github.com/yfeng95/face3d).
+- [2026.10.27] 🥳 Release [assets link](https://drive.google.com/drive/folders/1aDB0C4Bs_EuGZFKZDm9lrRQTvAyiTmsh?usp=sharing).
 - [2026.10.26] Release [Deep3DFaceRecon](https://github.com/sicxu/Deep3DFaceRecon_pytorch), [Deep3DFaceRecon's BFM](https://github.com/sicxu/Deep3DFaceRecon_pytorch), and [Deep3DFaceRecon's Nvduffrast-based renderer](https://github.com/sicxu/Deep3DFaceRecon_pytorch).
 - [2026.10.26] Release [MediaPipe Blendshapes to FLAME](https://github.com/PeizhiYan/mediapipe-blendshapes-to-flame), [DECA](https://github.com/yfeng95/DECA), [MICA](https://github.com/Zielon/MICA), [SMIRK](https://github.com/georgeretsi/smirk), and [SPECTRE](https://github.com/filby89/spectre).
 - [2026.10.26] Release [FLAME](https://github.com/soubhiksanyal/FLAME_PyTorch).
