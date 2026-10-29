@@ -36,11 +36,13 @@
         - [ ] ...
     - BFM-based
         - [x] [Deep3DFaceRecon](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
+        - [x] [Face3D's fitting](https://github.com/yfeng95/face3d)
         - [ ] ...
 - 3DMM
     - [x] [FLAME](https://github.com/soubhiksanyal/FLAME_PyTorch)
     - BFM
         - [x] [Deep3DFaceRecon's BFM](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
+        - [x] [Face3D's BFM](https://github.com/yfeng95/face3d)
         - [ ] ...
 - Renderer
     - [x] [Deep3DFaceRecon's Nvduffrast-based renderer](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
