@@ -26,26 +26,26 @@
 
 - Parameterizer
     - FLAME-based
-        - [x] [MediaPipe Blendshapes to FLAME](https://github.com/PeizhiYan/mediapipe-blendshapes-to-flame)
-        - [x] [DECA](https://github.com/yfeng95/DECA)
-        - [x] [MICA](https://github.com/Zielon/MICA)
-        - [x] [SMIRK](https://github.com/georgeretsi/smirk)
-        - [x] [SPECTRE](https://github.com/filby89/spectre)
-        - [ ] [EMOCA](https://github.com/radekd91/emoca)
-        - [ ] [INFERNO](https://github.com/radekd91/inferno)
+        - [x] [MediaPipe Blendshapes to FLAME](face3d_pytorch/core/parameterizer/blendshapes_to_flame/README.md): [[Github]](https://github.com/PeizhiYan/mediapipe-blendshapes-to-flame)
+        - [x] DECA: [[Github]](https://github.com/yfeng95/DECA)
+        - [x] MICA: [[Github]](https://github.com/Zielon/MICA)
+        - [x] SMIRK: [[Github]](https://github.com/georgeretsi/smirk)
+        - [x] SPECTRE: [[Github]](https://github.com/filby89/spectre)
+        - [ ] EMOCA: [[Github]](https://github.com/radekd91/emoca)
+        - [ ] INFERNO: [[Github]](https://github.com/radekd91/inferno)
         - [ ] ...
     - BFM-based
-        - [x] [Deep3DFaceRecon](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
-        - [x] [Face3D's fitting](https://github.com/yfeng95/face3d)
+        - [x] Deep3DFaceRecon: [[Github]](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
+        - [x] Face3D's fitting: [[Github]](https://github.com/yfeng95/face3d)
         - [ ] ...
 - 3DMM
-    - [x] [FLAME](https://github.com/soubhiksanyal/FLAME_PyTorch)
+    - [x] [FLAME](face3d_pytorch/core/d3mm/flame/README.md): [[Github]](https://github.com/soubhiksanyal/FLAME_PyTorch)
     - BFM
-        - [x] [Deep3DFaceRecon's BFM](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
-        - [x] [Face3D's BFM](https://github.com/yfeng95/face3d)
+        - [x] Deep3DFaceRecon's BFM: [[Github]](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
+        - [x] Face3D's BFM: [[Github]](https://github.com/yfeng95/face3d)
         - [ ] ...
 - Renderer
-    - [x] [Deep3DFaceRecon's Nvduffrast-based renderer](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
+    - [x] Deep3DFaceRecon's Nvduffrast-based renderer: [[Github]](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
     - [ ] ...
 - Applications
     - [ ] Face Reconstruction
