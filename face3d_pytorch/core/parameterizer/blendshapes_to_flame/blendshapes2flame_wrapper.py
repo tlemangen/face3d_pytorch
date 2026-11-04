@@ -19,8 +19,11 @@ class Blendshapes2FLAMEWrapper(nn.Module):
         self,
         face_landmarker_path="face3d_pytorch/assets/mediapipe/face_landmarker.task",
         mappings_path="face3d_pytorch/assets/blendshapes_to_flame/mappings",
+        device="cuda",
     ):
         super().__init__()
+        self.device = device
+
         # download model weights from: https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task
         base_options = mp.tasks.BaseOptions(model_asset_path=face_landmarker_path)
         options = mp.tasks.vision.FaceLandmarkerOptions(
@@ -64,18 +67,14 @@ class Blendshapes2FLAMEWrapper(nn.Module):
 
         return {"translation": translation, "rotation": rotation_vec}
 
-    def forward(self, images):
+    def images2blendshapes(self, images):
         # images: (B, C, H, W)
 
         images_cv = self.preprocessing(images)
 
-        lmks_3d_batch = []
         blendshapes_batch = []
-        exp_batch = []
-        jaw_pose_batch = []
-        eye_pose_batch = []
-        rotation_batch = []
-        translation_batch = []
+        facial_transformation_matrixes_batch = []
+        lmks_3d_batch = []
         for image_cv in images_cv:
             image = mp.Image(image_format=mp.ImageFormat.SRGB, data=image_cv)
             height, width = image.height, image.width
@@ -90,50 +89,79 @@ class Blendshapes2FLAMEWrapper(nn.Module):
             lmks_3d[:, 2] = lmks_3d[:, 2]
 
             blendshapes = detection_result.face_blendshapes[0]
-            blendshapes = np.array([list(map(lambda b: b.score, blendshapes))])  # [1, 52]
+            blendshapes = np.array(list(map(lambda b: b.score, blendshapes)))  # [52]
 
-            exp, jaw_pose, eye_pose = self.mp2flame.convert(blendshape_scores=blendshapes)  # (1, 100), (1, 3), (1, 6)
+            facial_transformation_matrixes = detection_result.facial_transformation_matrixes[0]
 
-            # rotation: 旋转向量，euler角 (pitch, yaw, roll)
-            # translation: 平移向量 (tx, ty, tz)
-            # rotation_vec, translation_vec = compute_head_pose_from_mp_landmarks_3d(
-            #     face_landmarks=lmks_3d, img_h=height, img_w=width
-            # )
-            # rotation = rotation_vec.T  # (1, 3)
-            # translation = translation_vec.T  # (1, 3)
+            blendshapes_batch.append(torch.from_numpy(blendshapes))
+            facial_transformation_matrixes_batch.append(torch.from_numpy(facial_transformation_matrixes))
+            lmks_3d_batch.append(torch.from_numpy(lmks_3d))
+        blendshapes_batch = torch.stack(blendshapes_batch, dim=0).to(self.device, dtype=torch.float32)
+        facial_transformation_matrixes_batch = torch.stack(facial_transformation_matrixes_batch, dim=0).to(
+            self.device, dtype=torch.float32
+        )
+        lmks_3d_batch = torch.stack(lmks_3d_batch, dim=0).to(self.device, dtype=torch.float32)
+        lmks_68_batch = mediapipe_to_ibug68(lmks_3d_batch)
 
-            pose = self.extract_pose_from_matrix(detection_result.facial_transformation_matrixes[0])
+        mediapipe_dict = {
+            "landmarks_3d": lmks_3d_batch.detach(),  # (B, 478, 3)
+            "landmarks_68": lmks_68_batch.detach(),  # (B, 68, 3)
+            "blendshapes": blendshapes_batch.detach(),  # (B, 52)
+            "facial_transformation_matrixes": facial_transformation_matrixes_batch.detach(),  # (B, 4, 4)
+        }
+
+        return mediapipe_dict
+
+    def blendshapes2params(self, blendshapes, facial_transformation_matrixes):
+        # blendshapes: (B, 52), torch.float32
+        # facial_transformation_matrixes: (B, 4, 4), torch.float32
+
+        blendshapes_np = blendshapes.detach().cpu().numpy()
+        facial_transformation_matrixes_np = facial_transformation_matrixes.detach().cpu().numpy()
+
+        exp_batch = []
+        jaw_pose_batch = []
+        eye_pose_batch = []
+        rotation_batch = []
+        translation_batch = []
+        for bs, ftm in zip(blendshapes_np, facial_transformation_matrixes_np):
+
+            exp, jaw_pose, eye_pose = self.mp2flame.convert(blendshape_scores=bs[None])  # (1, 100), (1, 3), (1, 6)
+
+            pose = self.extract_pose_from_matrix(ftm)
             rotation = pose["rotation"][None, :]
             translation = pose["translation"][None, :]
 
-            lmks_3d_batch.append(torch.from_numpy(lmks_3d))
-            blendshapes_batch.append(torch.from_numpy(blendshapes))
             exp_batch.append(torch.from_numpy(exp))
             jaw_pose_batch.append(torch.from_numpy(jaw_pose))
             eye_pose_batch.append(torch.from_numpy(eye_pose))
             rotation_batch.append(torch.from_numpy(rotation))
             translation_batch.append(torch.from_numpy(translation))
-        lmks_3d_batch = torch.stack(lmks_3d_batch, dim=0).to(images.device, dtype=torch.float32)
-        blendshapes_batch = torch.concat(blendshapes_batch, dim=0).to(images.device, dtype=torch.float32)
-        exp_batch = torch.concat(exp_batch, dim=0).to(images.device, dtype=torch.float32)
-        jaw_pose_batch = torch.concat(jaw_pose_batch, dim=0).to(images.device, dtype=torch.float32)
-        eye_pose_batch = torch.concat(eye_pose_batch, dim=0).to(images.device, dtype=torch.float32)
-        rotation_batch = torch.concat(rotation_batch, dim=0).to(images.device, dtype=torch.float32)
-        translation_batch = torch.concat(translation_batch, dim=0).to(images.device, dtype=torch.float32)
+        exp_batch = torch.concat(exp_batch, dim=0).to(self.device, dtype=torch.float32)
+        jaw_pose_batch = torch.concat(jaw_pose_batch, dim=0).to(self.device, dtype=torch.float32)
+        eye_pose_batch = torch.concat(eye_pose_batch, dim=0).to(self.device, dtype=torch.float32)
+        rotation_batch = torch.concat(rotation_batch, dim=0).to(self.device, dtype=torch.float32)
+        translation_batch = torch.concat(translation_batch, dim=0).to(self.device, dtype=torch.float32)
 
         exp = exp_batch.detach()
         pose = torch.concat([rotation_batch, jaw_pose_batch], dim=-1).detach()
         eye_pose = eye_pose_batch.detach()
         trans = translation_batch.detach()
-        lmks_68_batch = mediapipe_to_ibug68(lmks_3d_batch).detach()
 
         # trans 属于 MediaPipe canonical face 坐标系，仅保留作诊断信息；
         # 它不能直接作为 FLAME transl 或 render_shape 相机使用。
+        # exp: (B, 100)
+        # pose: (B, 6)
+        # eye_pose: (B, 6)
+        # trans: (B, 3)
         params_dict = {"exp": exp, "pose": pose, "eye_pose": eye_pose, "trans": trans}
-        mediapipe_dict = {
-            "landmarks_3d": lmks_3d_batch.detach(),
-            "landmarks_68": lmks_68_batch,
-            "blendshapes": blendshapes_batch.detach(),
-        }
+
+        return params_dict
+
+    def forward(self, images):
+        # images: (B, C, H, W)
+
+        mediapipe_dict = self.images2blendshapes(images)
+        params_dict = self.blendshapes2params(mediapipe_dict["blendshapes"], mediapipe_dict["facial_transformation_matrixes"])
 
         return params_dict, mediapipe_dict
