@@ -45,7 +45,6 @@ class FLAME(nn.Module):
         with open(config.flame_model_path, "rb") as f:
             self.flame_model = Struct(**pickle.load(f, encoding="latin1"))
         self.NECK_IDX = 1
-        self.batch_size = config.batch_size
         self.dtype = torch.float32
         self.use_face_contour = config.use_face_contour
         self.faces = self.flame_model.f
@@ -58,7 +57,7 @@ class FLAME(nn.Module):
         # There are total 300 shape parameters to control FLAME; But one can use the first few parameters to express
         # the shape. For example 100 shape parameters are used for RingNet project
         default_shape = torch.zeros(
-            [self.batch_size, 300 - config.shape_params],
+            [1, 300 - config.shape_params],
             dtype=self.dtype,
             requires_grad=False,
         )
@@ -70,7 +69,7 @@ class FLAME(nn.Module):
         # There are total 100 shape expression parameters to control FLAME; But one can use the first few parameters to express
         # the expression. For example 50 expression parameters are used for RingNet project
         default_exp = torch.zeros(
-            [self.batch_size, 100 - config.expression_params],
+            [1, 100 - config.expression_params],
             dtype=self.dtype,
             requires_grad=False,
         )
@@ -80,14 +79,14 @@ class FLAME(nn.Module):
 
         # Eyeball and neck rotation
         default_eyball_pose = torch.zeros(
-            [self.batch_size, 6], dtype=self.dtype, requires_grad=False
+            [1, 6], dtype=self.dtype, requires_grad=False
         )
         self.register_parameter(
             "eye_pose", nn.Parameter(default_eyball_pose, requires_grad=False)
         )
 
         default_neck_pose = torch.zeros(
-            [self.batch_size, 3], dtype=self.dtype, requires_grad=False
+            [1, 3], dtype=self.dtype, requires_grad=False
         )
         self.register_parameter(
             "neck_pose", nn.Parameter(default_neck_pose, requires_grad=False)
@@ -98,7 +97,7 @@ class FLAME(nn.Module):
         self.use_3D_translation = config.use_3D_translation
 
         default_transl = torch.zeros(
-            [self.batch_size, 3], dtype=self.dtype, requires_grad=False
+            [1, 3], dtype=self.dtype, requires_grad=False
         )
         self.register_parameter(
             "transl", nn.Parameter(default_transl, requires_grad=False)
@@ -223,7 +222,7 @@ class FLAME(nn.Module):
         dyn_lmk_b_coords = torch.index_select(dynamic_lmk_b_coords, 0, y_rot_angle)
 
         return dyn_lmk_faces_idx, dyn_lmk_b_coords
-    
+
     def forward(
         self,
         shape_params=None,
@@ -242,17 +241,19 @@ class FLAME(nn.Module):
             vertices: N X V X 3
             landmarks: N X number of landmarks X 3
         """
+        batch_size = len(shape_params)
+        
         betas = torch.cat(
-            [shape_params, self.shape_betas, expression_params, self.expression_betas],
+            [shape_params, self.shape_betas.repeat(batch_size, 1), expression_params, self.expression_betas.repeat(batch_size, 1)],
             dim=1,
         )
-        neck_pose = neck_pose if neck_pose is not None else self.neck_pose
-        eye_pose = eye_pose if eye_pose is not None else self.eye_pose
-        transl = transl if transl is not None else self.transl
+        neck_pose = neck_pose if neck_pose is not None else self.neck_pose.repeat(batch_size, 1)
+        eye_pose = eye_pose if eye_pose is not None else self.eye_pose.repeat(batch_size, 1)
+        transl = transl if transl is not None else self.transl.repeat(batch_size, 1)
         full_pose = torch.cat(
             [pose_params[:, :3], neck_pose, pose_params[:, 3:], eye_pose], dim=1
         )
-        template_vertices = self.v_template.unsqueeze(0).repeat(self.batch_size, 1, 1)
+        template_vertices = self.v_template.unsqueeze(0).repeat(batch_size, 1, 1)
 
         vertices, _ = lbs(
             betas,
@@ -265,10 +266,8 @@ class FLAME(nn.Module):
             self.lbs_weights,
         )
 
-        lmk_faces_idx = self.lmk_faces_idx.unsqueeze(dim=0).repeat(self.batch_size, 1)
-        lmk_bary_coords = self.lmk_bary_coords.unsqueeze(dim=0).repeat(
-            self.batch_size, 1, 1
-        )
+        lmk_faces_idx = self.lmk_faces_idx.unsqueeze(dim=0).repeat(batch_size, 1)
+        lmk_bary_coords = self.lmk_bary_coords.unsqueeze(dim=0).repeat(batch_size, 1, 1)
         if self.use_face_contour:
 
             (
