@@ -27,7 +27,7 @@
 - Parameterizer
     - FLAME-based
         - [x] [MediaPipe Blendshapes to FLAME](face3d_pytorch/core/parameterizer/blendshapes_to_flame/README.md): [[Github]](https://github.com/PeizhiYan/mediapipe-blendshapes-to-flame)
-        - [x] DECA: [[Github]](https://github.com/yfeng95/DECA)
+        - [x] [DECA](face3d_pytorch/core/parameterizer/deca/README.md): [[Github]](https://github.com/yfeng95/DECA)
         - [x] MICA: [[Github]](https://github.com/Zielon/MICA)
         - [x] SMIRK: [[Github]](https://github.com/georgeretsi/smirk)
         - [x] SPECTRE: [[Github]](https://github.com/filby89/spectre)
