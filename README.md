@@ -24,35 +24,46 @@
 
 ## 📄 TODO
 
-<!-- |   | Name | Paper | Github | README | -->
+### Parameterizer
 
-- Parameterizer
-    - FLAME-based
-        - [x] [MediaPipe Blendshapes to FLAME](face3d_pytorch/core/parameterizer/blendshapes_to_flame/README.md): [[Github]](https://github.com/PeizhiYan/mediapipe-blendshapes-to-flame)
-        - [x] [DECA](face3d_pytorch/core/parameterizer/deca/README.md): [[Github]](https://github.com/yfeng95/DECA)
-        - [x] [MICA](face3d_pytorch/core/parameterizer/mica/README.md): [[Github]](https://github.com/Zielon/MICA)
-        - [x] [SMIRK](face3d_pytorch/core/parameterizer/smirk/README.md): [[Github]](https://github.com/georgeretsi/smirk)
-        - [x] [SPECTRE](face3d_pytorch/core/parameterizer/spectre/README.md): [[Github]](https://github.com/filby89/spectre)
-        - [ ] EMOCA: [[Github]](https://github.com/radekd91/emoca)
-        - [ ] INFERNO: [[Github]](https://github.com/radekd91/inferno)
-        - [ ] ...
-    - BFM-based
-        - [x] [Deep3DFaceRecon](face3d_pytorch/core/parameterizer/deep3dfacerecon/README.md): [[Github]](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
-        - [x] [Face3D's fitting](face3d_pytorch/core/parameterizer/face3d_fitting/README.md): [[Github]](https://github.com/yfeng95/face3d)
-        - [ ] ...
-- 3DMM
-    - [x] [FLAME](face3d_pytorch/core/d3mm/flame/README.md): [[Github]](https://github.com/soubhiksanyal/FLAME_PyTorch)
-    - BFM
-        - [x] Deep3DFaceRecon's BFM: [[Github]](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
-        - [x] Face3D's BFM: [[Github]](https://github.com/yfeng95/face3d)
-        - [ ] ...
-- Renderer
-    - [x] Deep3DFaceRecon's Nvduffrast-based renderer: [[Github]](https://github.com/sicxu/Deep3DFaceRecon_pytorch)
-    - [ ] ...
-- Applications
-    - [ ] Face Reconstruction
-    - [ ] Face Reenactment
-    - [ ] ...
+FLAME-based:
+
+|                    | Name                                                                                               | Paper                                          | Code                                                                  |
+| ------------------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------- |
+| :white_check_mark: | [MediaPipe Blendshapes to FLAME](face3d_pytorch/core/parameterizer/blendshapes_to_flame/README.md) | ——                                             | [Github](https://github.com/PeizhiYan/mediapipe-blendshapes-to-flame) |
+| :white_check_mark: | [DECA](face3d_pytorch/core/parameterizer/deca/README.md)                                           | [ACM TOG'21](https://arxiv.org/pdf/2012.04012) | [Github](https://github.com/yfeng95/DECA)                             |
+| :white_check_mark: | [MICA](face3d_pytorch/core/parameterizer/mica/README.md)                                           | [ECCV'22](https://arxiv.org/pdf/2204.06607)    | [Github](https://github.com/Zielon/MICA)                              |
+| :white_check_mark: | [SPECTRE](face3d_pytorch/core/parameterizer/spectre/README.md)                                     | [arXiv'22](https://arxiv.org/pdf/2207.11094)   | [Github](https://github.com/filby89/spectre)                          |
+| :white_check_mark: | [SMIRK](face3d_pytorch/core/parameterizer/smirk/README.md)                                         | [CVPR'24](https://arxiv.org/pdf/2404.04104)    | [Github](https://github.com/georgeretsi/smirk)                        |
+|                    | EMOCA                                                                                              | [CVPR'22](https://arxiv.org/pdf/2204.11312)    | [Github](https://github.com/radekd91/emoca)                           |
+|                    | INFERNO                                                                                            | ——                                             | [Github](https://github.com/radekd91/inferno)                         |
+
+BFM-based:
+
+|                    | Name                                                                           | Paper                                        | Code                                                       |
+| ------------------ | ------------------------------------------------------------------------------ | -------------------------------------------- | ---------------------------------------------------------- |
+| :white_check_mark: | [Deep3DFaceRecon](face3d_pytorch/core/parameterizer/deep3dfacerecon/README.md) | [CVPRW'19](https://arxiv.org/pdf/1903.08527) | [Github](https://github.com/sicxu/Deep3DFaceRecon_pytorch) |
+| :white_check_mark: | [Face3D's fitting](face3d_pytorch/core/parameterizer/face3d_fitting/README.md) | ——                                           | [Github](https://github.com/yfeng95/face3d)                |
+
+### 3DMM
+
+|                    | Name                                              | Paper                                                        | Code                                                       |
+| ------------------ | ------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------- |
+| :white_check_mark: | [FLAME](face3d_pytorch/core/d3mm/flame/README.md) | [ACM TOG'17](https://dl.acm.org/doi/10.1145/3130800.3130813) | [Github](https://github.com/soubhiksanyal/FLAME_PyTorch)   |
+| :white_check_mark: | [Deep3DFaceRecon's BFM]()                         | [CVPRW'19](https://arxiv.org/pdf/1903.08527)                 | [Github](https://github.com/sicxu/Deep3DFaceRecon_pytorch) |
+| :white_check_mark: | [Face3D's BFM]()                                  | ——                                                           | [Github](https://github.com/yfeng95/face3d)                |
+
+### Renderer
+
+|                    | Name                                            | Paper                                        | Code                                                       |
+| ------------------ | ----------------------------------------------- | -------------------------------------------- | ---------------------------------------------------------- |
+| :white_check_mark: | [Deep3DFaceRecon's Nvduffrast-based renderer]() | [CVPRW'19](https://arxiv.org/pdf/1903.08527) | [Github](https://github.com/sicxu/Deep3DFaceRecon_pytorch) |
+
+### Applications
+
+- [ ] Face Reconstruction
+- [ ] Face Reenactment
+- [ ] ...
 
 ## 📖 Quick Start
 
