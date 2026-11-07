@@ -9,7 +9,7 @@
 </div>
 
 <p align="center">
-🤩A PyTorch-based toolkit for 3D face parameterization and reconstruction, integrating multiple face models.🤩
+:star: A PyTorch-based toolkit for 3D face parameterization and reconstruction, integrating multiple face models. :star:
 </p>
 
 
@@ -23,6 +23,8 @@
 - [2026.10.26] 🎉 Release [face3d_pytorch](https://github.com/tlemangen/face3d_pytorch).
 
 ## 📄 TODO
+
+<!-- |   | Name | Paper | Github | README | -->
 
 - Parameterizer
     - FLAME-based
