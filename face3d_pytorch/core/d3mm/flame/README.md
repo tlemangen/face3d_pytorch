@@ -35,6 +35,6 @@ args:
 
 return:
 
-- mesh_dict["verts"]: (T, 5023, 3), torch.float32. 顶点.
+- mesh_dict["verts"]: (B, 5023, 3), torch.float32. 顶点.
 - mesh_dict["faces"]: (F, 3), torch.int32. 三角面.
-- mesh_dict["landmarks"]: (T, 68, 3), torch.int32.
+- mesh_dict["landmarks"]: (B, 68, 3), torch.int32.

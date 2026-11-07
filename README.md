@@ -15,10 +15,10 @@
 
 ## 🔥 Updates
 
-- [2026.10.29] Release [Face3D's fitting](https://github.com/yfeng95/face3d), and [Face3D's BFM](https://github.com/yfeng95/face3d).
+- [2026.10.29] Release [Face3D's fitting](face3d_pytorch/core/parameterizer/face3d_fitting/README.md), and [Face3D's BFM](face3d_pytorch/core/d3mm/bfm/README.md).
 - [2026.10.27] 🥳 Release [assets link](https://drive.google.com/drive/folders/1aDB0C4Bs_EuGZFKZDm9lrRQTvAyiTmsh?usp=sharing).
-- [2026.10.26] Release [Deep3DFaceRecon](https://github.com/sicxu/Deep3DFaceRecon_pytorch), [Deep3DFaceRecon's BFM](https://github.com/sicxu/Deep3DFaceRecon_pytorch), and [Deep3DFaceRecon's Nvduffrast-based renderer](https://github.com/sicxu/Deep3DFaceRecon_pytorch).
-- [2026.10.26] Release [MediaPipe Blendshapes to FLAME](https://github.com/PeizhiYan/mediapipe-blendshapes-to-flame), [DECA](https://github.com/yfeng95/DECA), [MICA](https://github.com/Zielon/MICA), [SMIRK](https://github.com/georgeretsi/smirk), and [SPECTRE](https://github.com/filby89/spectre).
+- [2026.10.26] Release [Deep3DFaceRecon](face3d_pytorch/core/parameterizer/deep3dfacerecon/README.md), [Deep3DFaceRecon's BFM](face3d_pytorch/core/d3mm/bfm/README.md), and [Deep3DFaceRecon's Nvduffrast-based renderer](face3d_pytorch/core/renderer/README.md).
+- [2026.10.26] Release [MediaPipe Blendshapes to FLAME](face3d_pytorch/core/parameterizer/blendshapes_to_flame/README.md), [DECA](face3d_pytorch/core/parameterizer/deca/README.md), [MICA](face3d_pytorch/core/parameterizer/mica/README.md), [SPECTRE](face3d_pytorch/core/parameterizer/spectre/README.md), and [SMIRK](face3d_pytorch/core/parameterizer/smirk/README.md).
 - [2026.10.26] Release [FLAME](https://github.com/soubhiksanyal/FLAME_PyTorch).
 - [2026.10.26] 🎉 Release [face3d_pytorch](https://github.com/tlemangen/face3d_pytorch).
 
@@ -47,17 +47,17 @@ BFM-based:
 
 ### 3DMM
 
-|                    | Name                                              | Paper                                                        | Code                                                       |
-| ------------------ | ------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------- |
-| :white_check_mark: | [FLAME](face3d_pytorch/core/d3mm/flame/README.md) | [ACM TOG'17](https://dl.acm.org/doi/10.1145/3130800.3130813) | [Github](https://github.com/soubhiksanyal/FLAME_PyTorch)   |
-| :white_check_mark: | [Deep3DFaceRecon's BFM]()                         | [CVPRW'19](https://arxiv.org/pdf/1903.08527)                 | [Github](https://github.com/sicxu/Deep3DFaceRecon_pytorch) |
-| :white_check_mark: | [Face3D's BFM]()                                  | ——                                                           | [Github](https://github.com/yfeng95/face3d)                |
+|                    | Name                                                            | Paper                                                        | Code                                                       |
+| ------------------ | --------------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------- |
+| :white_check_mark: | [FLAME](face3d_pytorch/core/d3mm/flame/README.md)               | [ACM TOG'17](https://dl.acm.org/doi/10.1145/3130800.3130813) | [Github](https://github.com/soubhiksanyal/FLAME_PyTorch)   |
+| :white_check_mark: | [Deep3DFaceRecon's BFM](face3d_pytorch/core/d3mm/bfm/README.md) | [CVPRW'19](https://arxiv.org/pdf/1903.08527)                 | [Github](https://github.com/sicxu/Deep3DFaceRecon_pytorch) |
+| :white_check_mark: | [Face3D's BFM](face3d_pytorch/core/d3mm/bfm/README.md)          | ——                                                           | [Github](https://github.com/yfeng95/face3d)                |
 
 ### Renderer
 
-|                    | Name                                            | Paper                                        | Code                                                       |
-| ------------------ | ----------------------------------------------- | -------------------------------------------- | ---------------------------------------------------------- |
-| :white_check_mark: | [Deep3DFaceRecon's Nvduffrast-based renderer]() | [CVPRW'19](https://arxiv.org/pdf/1903.08527) | [Github](https://github.com/sicxu/Deep3DFaceRecon_pytorch) |
+|                    | Name                                                                                  | Paper                                        | Code                                                       |
+| ------------------ | ------------------------------------------------------------------------------------- | -------------------------------------------- | ---------------------------------------------------------- |
+| :white_check_mark: | [Deep3DFaceRecon's Nvduffrast-based renderer](face3d_pytorch/core/renderer/README.md) | [CVPRW'19](https://arxiv.org/pdf/1903.08527) | [Github](https://github.com/sicxu/Deep3DFaceRecon_pytorch) |
 
 ### Applications
 
